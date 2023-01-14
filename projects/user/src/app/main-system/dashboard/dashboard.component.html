@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/tasks" style="font-weight: bold"
+          >Task Management</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                routerLink="/dashboard"
+                routerLinkActive="active"
+                >All Tasks</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                style="right: 30px; position: absolute"
+                routerLink="/login"
+                (click)="signOut()"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="" style="padding: 50px; display: flex; flex-wrap: wrap">
+      <div
+        class="col-md-3"
+        style="padding: 5px"
+        *ngFor="
+          let item of dataSource
+            | paginate
+              : {
+                  id: 'task',
+                  itemsPerPage: 10,
+                  currentPage: p,
+                  totalItems: total
+                };
+          let index = index
+        "
+      >
+        <div class="card mt-3">
+          <div class="card-body">
+            <h1 class="card-title">{{ item.title }}</h1>
+            <p class="card-subtitle mb-2 text-muted">
+              Dead-Line Date : {{ item.deadline }}
+            </p>
+            <p class="card-text">{{ item.description }}</p>
+            <a
+              class="card-link"
+              class="m-1"
+              mat-raised-button
+              color="basic"
+              (click)="taskDetails(item)"
+              >Details</a
+            >
+            <button
+              mat-raised-button
+              color="warn"
+              class="m-1"
+              (click)="taskStatus(item)"
+            >
+              Complete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<div class="body">
+  <h1 class="title">Task Title: {{ objectPass.tasks.title }}</h1>
+  <h1>Task Deadline: {{ objectPass.tasks.deadline }}</h1>
+  <h1>Task Description: {{ objectPass.tasks.description }}</h1>
+  <h1>
+    Completed? Click Below:
+    <br />
+    <br />
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="complete(objectPass.tasks)"
+    >
+      Complete
+    </button>
+  </h1>
+</div>

@@ -1,0 +1,40 @@
+// Glass Background
+// @import url(https://fonts.googleapis.com/css?family=Megrim&text=CAT);
+
+// html {
+//   // background-image: url("http://placekitten.com/1920/1120");
+// }
+
+body {
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  height: fit-content;
+  font-size: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(113, 185, 215, 1) 0%,
+    rgba(153, 111, 201, 1) 95%
+  );
+  // background-color: red;
+  margin: 0;
+}
+
+nav {
+  background-color: transparent !important;
+  li {
+    a {
+      color: #000000;
+      padding: 10px;
+      background-color: white;
+      margin: 0 15px;
+    }
+    .active {
+      color: green;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      // margin: 10px 0;
+    }
+  }
+}

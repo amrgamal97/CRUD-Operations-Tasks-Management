@@ -1,0 +1,76 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100 mt-2">
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element; let index = index">
+      {{ index + 1 }}
+    </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="deadline">
+    <th mat-header-cell *matHeaderCellDef>Tasks Assigned</th>
+    <td mat-cell *matCellDef="let element">{{ element.assignedTasks }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef class="w-10"></th>
+    <td mat-cell *matCellDef="let element" style="text-align: center">
+      <!-- <button>asdoaskdoaskd</button> -->
+      <button
+        class="btn btn-warning update"
+        mat-raised-button
+        (click)="deleteUser(element)"
+      >
+        Delete
+      </button>
+      <button
+        mat-raised-button
+        color="success"
+        class="update"
+        (click)="changeToDeactive(element)"
+        *ngIf="element.status != 'Active'"
+      >
+        Activate
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        class="update"
+        (click)="changeToActive(element)"
+        *ngIf="element.status == 'Active'"
+      >
+        Deactivate
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="
+      let row;
+      columns: displayedColumns
+        | paginate
+          : {
+              id: 'task',
+              itemsPerPage: 10,
+              currentPage: p,
+              totalItems: totalPages
+            };
+      let index = index
+    "
+  ></tr>
+</table>
